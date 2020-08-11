@@ -6,6 +6,8 @@ Learning about Kubernetes!
 
 yoshikawa/k8s-base − learning about Kubernetes
 
+![](./images/deploy.svg)
+
 ### requirements
 
 |Lang/FrameWork|Version|
