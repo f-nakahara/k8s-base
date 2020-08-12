@@ -1,11 +1,54 @@
-api/migrate:
-	docker-compose exec django ./manage.py migrate
+COMPOSE=docker-compose
+EXEC=$(COMPOSE) exec
+BUILD=$(COMPOSE) build
+UP=$(COMPOSE) up -d
+LOGS=$(COMPOSE) logs
+STOP=$(COMPOSE) stop
+RM=$(COMPOSE) rm
+DOWN=$(COMPOSE) down
+NPM=npm
+NPMINSTALL=$(NPM) install
+NPMBUILD=$(NPM) build
+NPMDEV=$(NPM) run-script docker-dev
+NUXT=$(EXEC) nuxt
+DJANGO=$(EXEC) django
 
-api/run:
-	docker-compose exec django ./manage.py runserver 0.0.0.0:8000
+all: docker/up api/migrate api/run ## develop backend
 
-client/install:
-	docker-compose exec nuxt npm install
+client: docker/up client/install client/run ## develop client
 
-client/run:
-	docker-compose exec nuxt npm run-script docker-dev
+docker/up: ## docker up
+	$(UP)
+
+docker/logs: ## docker logs
+	$(LOGS)
+
+docker/stop: ## docker stop
+	$(STOP)
+
+docker/clean: ## docker clean
+	$(RM)
+
+docker/down: ## docker down
+	$(DOWN)
+
+api/migrate: ## Django migrate
+	$(DJANGO) ./manage.py migrate
+
+api/run: ## Runserver in django container
+	$(DJANGO) ./manage.py runserver 0.0.0.0:8000
+
+client/install: ## npm install
+	$(NUXT) $(NPMINSTALL)
+
+client/run: ## npm run-script dev
+	$(NUXT) $(NPMDEV)
+
+nuxt/ash: ## nuxt container ash
+	$(NUXT) ash
+
+django/bash: ## django container bash
+	$(DJANGO) bash
+
+help: ## Display this help screen
+	@grep -E '^[a-zA-Z/_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'

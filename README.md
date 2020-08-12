@@ -6,6 +6,8 @@ Learning about Kubernetes!
 
 yoshikawa/k8s-base − learning about Kubernetes
 
+### Deploy image
+
 ![](./images/deploy.svg)
 
 ### requirements
@@ -19,11 +21,27 @@ yoshikawa/k8s-base − learning about Kubernetes
 |Nuxt.js|2.14.1|
 |Docker|19.03.12|
 
+## How to set up a local development environment
+
+### Local development environment image
+
+![](./images/develop.png)
+
 ### Backend Server
+
+```sh
+make
+```
+
+access: `localhost:8000`
 
 ### Frontend Server
 
-### Build and run the Docker image
+```sh
+make client
+```
+
+access: `localhost:3000`
 
 ## Contribution
 
