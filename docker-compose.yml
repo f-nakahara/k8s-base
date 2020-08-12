@@ -16,7 +16,7 @@ services:
       - 3306
     volumes:
       - mysqldata:/var/lib/mysql
-      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./.docker/mysql/conf:/etc/mysql/conf.d
 
   django:
     container_name: django
