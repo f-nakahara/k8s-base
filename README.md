@@ -27,6 +27,28 @@ yoshikawa/k8s-base − learning about Kubernetes
 
 ![](./images/develop.png)
 
+### Getting Started
+
+#### Prerequisites
+
+You need to use the software and install them.
+
+```sh
+brew cask install docker
+# If you haven't started Docker, you have to run the following command:
+open /Application/Docker.app
+```
+
+#### Installation
+
+1. Clone the repo
+
+```sh
+git clone git@github.com:yoshikawa/k8s-base.git
+```
+
+2. Start the server as described below.
+
 ### Backend Server
 
 ```sh
