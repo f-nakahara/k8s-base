@@ -30,6 +30,7 @@ yoshikawa/k8s-base − learning about Kubernetes
 ### Backend Server
 
 ```sh
+make submoudule
 make
 ```
 
@@ -38,6 +39,7 @@ access: `localhost:8000`
 ### Frontend Server
 
 ```sh
+make submoudule
 make client
 ```
 

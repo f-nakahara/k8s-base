@@ -12,6 +12,7 @@ NPMBUILD=$(NPM) build
 NPMDEV=$(NPM) run-script docker-dev
 NUXT=$(EXEC) nuxt
 DJANGO=$(EXEC) django
+SUBMODULE=git submodule
 
 all: docker/up api/migrate api/run ## develop backend
 
@@ -49,6 +50,14 @@ nuxt/ash: ## nuxt container ash
 
 django/bash: ## django container bash
 	$(DJANGO) bash
+
+submodule: submodule/init submodule/update ## git submodule init & update
+
+submodule/init: ## git submodule init
+	$(SUBMODULE) init
+
+submodule/update: ## git submodule update
+	$(SUBMODULE) update --remote
 
 help: ## Display this help screen
 	@grep -E '^[a-zA-Z/_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
